@@ -1,32 +1,39 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import { useRouter, RouterView } from "vue-router";
+
+const router = useRouter();
+
+const handleSelect = (action: any) => {
+  switch (action as string) {
+    case "login":
+      router.push({ name: "login" });
+      break;
+
+    default:
+      break;
+  }
+};
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      <a-avatar :style="{ backgroundColor: '#14a9f8' }">Arco</a-avatar>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
   <a-page-header
     :style="{ background: 'var(--color-bg-2)' }"
-    title="ArcoDesign"
-    subtitle="ArcoDesign Vue 2.0"
+    title="Swordfish Admin"
+    subtitle="Vue3 template"
+    :showBack="false"
   >
     <template #extra>
-      <a-radio-group type="button" default-value="large">
-        <a-radio value="mini">Mini</a-radio>
-        <a-radio value="small">Small</a-radio>
-        <a-radio value="large">Large</a-radio>
-      </a-radio-group>
+      <div class="right-part">
+        <icon-notification class="notice-icon" />
+        <a-dropdown @select="handleSelect">
+          <a-avatar class="avatar">
+            <icon-user />
+          </a-avatar>
+          <template #content>
+            <a-doption value="login">Login</a-doption>
+          </template>
+        </a-dropdown>
+      </div>
     </template>
   </a-page-header>
 
@@ -34,4 +41,18 @@ import HelloWorld from "./components/HelloWorld.vue";
 </template>
 
 <style scoped>
+.right-part {
+  display: flex;
+  align-items: center;
+}
+.notice-icon {
+  margin-right: 20px;
+  font-size: 20px;
+  color: #000;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
 </style>
