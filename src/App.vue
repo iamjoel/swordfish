@@ -1,58 +1,28 @@
 <script setup lang="ts">
-import { useRouter, RouterView } from "vue-router";
-
-const router = useRouter();
-
-const handleSelect = (action: any) => {
-  switch (action as string) {
-    case "login":
-      router.push({ name: "login" });
-      break;
-
-    default:
-      break;
-  }
-};
+import { RouterView } from "vue-router";
+import Header from "@/components/layout/header/HeaderComp.vue";
+import Menu from "@/components/layout/menu/MenuComp.vue";
 </script>
 
 <template>
-  <a-page-header
-    :style="{ background: 'var(--color-bg-2)' }"
-    title="Swordfish Admin"
-    subtitle="Vue3 template"
-    :showBack="false"
-  >
-    <template #extra>
-      <div class="right-part">
-        <icon-notification class="notice-icon" />
-        <a-dropdown @select="handleSelect">
-          <a-avatar class="avatar">
-            <icon-user />
-          </a-avatar>
-          <template #content>
-            <a-doption value="login">Login</a-doption>
-          </template>
-        </a-dropdown>
-      </div>
-    </template>
-  </a-page-header>
-
-  <RouterView />
+  <Header />
+  <a-layout>
+    <Menu />
+    <a-layout-content>
+      <RouterView class="container" />
+    </a-layout-content>
+  </a-layout>
 </template>
 
 <style scoped>
-.right-part {
+.main {
   display: flex;
-  align-items: center;
 }
-.notice-icon {
-  margin-right: 20px;
-  font-size: 20px;
-  color: #000;
-}
-.avatar {
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
+
+.container {
+  box-sizing: border-box;
+  height: calc(100vh - 65px);
+  overflow-y: auto;
+  padding: 20px;
 }
 </style>
