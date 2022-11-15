@@ -1,24 +1,7 @@
 # Docs
 ## Vue3
-### Template
-```html
-<script setup lang="ts">
-</script>
+[Here](./contents/vue.md)
 
-<template>
-  <div class="container">
-  </div>
-</template>
-
-<style scoped src="./style.css" />
-```
-
-### Props
-```
-defineProps<{
-  msg: string
-}>()
-```
 
 ## [Vue Router](https://router.vuejs.org/introduction.html)
 Version: 4.x.

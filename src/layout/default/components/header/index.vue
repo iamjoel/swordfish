@@ -5,7 +5,7 @@ const router = useRouter();
 
 const handleSelect = (action: any) => {
   switch (action as string) {
-    case "login":
+    case "logout":
       router.push({ name: "login" });
       break;
 
@@ -30,7 +30,7 @@ const handleSelect = (action: any) => {
             <icon-user />
           </a-avatar>
           <template #content>
-            <a-doption value="login">Login</a-doption>
+            <a-doption value="logout">Logout</a-doption>
           </template>
         </a-dropdown>
       </div>
