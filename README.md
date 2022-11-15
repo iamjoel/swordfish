@@ -3,9 +3,9 @@ Admin template build with vue3, Vite, ts, [vue-router](https://router.vuejs.org/
 
 ## Feature
 * [x] Route.
-* [ ] Layout. Top
+* [ ] Layout. Top bar, Configurable Menu and main content.
 * [ ] Permission. Page permission and function permission.
-* [ ] Mock api.
+* [x] Mock api.
 * [ ] Ii8n.
 * [ ] Common pages.
   * [ ] List page. Include create, edit and show detail.

@@ -2,23 +2,26 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "@arco-design/web-vue";
+import { useUserStore } from "@/stores";
+import type { LoginData } from "@/api/user";
 
 const router = useRouter();
+const userStore = useUserStore();
 
 const form = reactive({
-  name: "admin",
+  username: "admin",
   password: "123",
   isRead: false,
 });
 
-const handleSubmit = () => {
-  const { name, password } = form;
-  //   use Mock, set role
-  if (name === "admin" && password === "123") {
+const handleSubmit = async () => {
+  try {
+    const res = await userStore.login(form as LoginData);
+    console.log(res);
     router.push({ name: "home" });
-    return;
+  } catch (e) {
+    Message.error(e + "");
   }
-  Message.error("Invalid username or password");
 };
 </script>
 
@@ -31,9 +34,9 @@ const handleSubmit = () => {
         </template>
         <template #description>
           <a-form :model="form" @submit="handleSubmit" class="form">
-            <a-form-item field="name" label="Username">
+            <a-form-item field="username" label="Username">
               <a-input
-                v-model="form.name"
+                v-model="form.username"
                 placeholder="Please enter your username"
               />
             </a-form-item>
