@@ -2,7 +2,7 @@
 1. Menu
 2. List page. with detail.
 
-
+登录页的处理
 配置+页面级权限
 接口的mock
 权限： 页面权限，功能点权限。
