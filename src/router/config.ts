@@ -1,6 +1,5 @@
 import DefaultLayout from '@/layout/default/index.vue'
-import HomeView from '../views/HomeView.vue'
-
+import Dashboard from '@/views/dashboard.vue'
 
 const route = [
     {
@@ -11,7 +10,7 @@ const route = [
         {
             path: '/',
             name: 'home',
-            component: HomeView,
+            component: Dashboard,
             meta: {
                 title: 'Dashboard',
                 icon: 'dashboard'
@@ -30,7 +29,7 @@ const route = [
                     meta: {
                         title: 'List',
                     },
-                    component: () => import('@/views/fish/list/IndexView.vue')
+                    component: () => import('@/views/fish/list/index.vue')
                 },
                 {
                     name: 'fish-summary',
@@ -38,7 +37,7 @@ const route = [
                     meta: {
                         title: 'Summary',
                     },
-                    component: () => import('@/views/fish/list/IndexView.vue')
+                    component: () => import('@/views/fish/list/index.vue')
                 }
             ]
         },

@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/user/LoginView.vue'),
+      component: () => import('@/views/user/login.vue'),
       meta: {
           hideInMenu: true
       }
