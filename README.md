@@ -3,12 +3,12 @@ An admin template build with [Vue3](https://vuejs.org/), [Vite](https://vitejs.d
 
 ## Feature
 * [x] Route.
-* [x] Layout. Top bar, Configurable Menu and main content.
+* [x] Layout. Top bar, breadcrumb, Configurable Menu and main content.
 * [ ] Permission. Page permission and function permission.
 * [x] Mock api.
 * [ ] Ii8n.
 * [ ] Common pages.
-  * [ ] List page. Include create, edit and show detail.
+  * [x] List page. Include create, edit and show detail.
   * [ ] Dashboard.
   * [x] Login page.
   * [ ] Register page.
