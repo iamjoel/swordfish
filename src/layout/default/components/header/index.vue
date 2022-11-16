@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from "vue-router";
 import type { LocationQueryRaw } from "vue-router";
+import { APP_NAME, APP_DESCRIPTION } from '@/config'
 import { useUserStore } from "@/stores";
 
 const router = useRouter();
@@ -27,8 +28,8 @@ const handleSelect = (action: any) => {
 <template>
   <a-page-header
     class="header"
-    title="Swordfish Admin"
-    subtitle="Vue3 template"
+    :title="APP_NAME"
+    :subtitle="APP_DESCRIPTION"
     :showBack="false"
   >
     <template #extra>

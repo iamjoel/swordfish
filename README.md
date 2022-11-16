@@ -16,6 +16,8 @@ An admin template build with [Vue3](https://vuejs.org/), [Vite](https://vitejs.d
 
 Inspired by [Arco Design Pro](https://github.com/arco-design/arco-design-pro-vue)
 
+## 路由
+
 ## Project Setup
 
 ```sh

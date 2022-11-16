@@ -9,6 +9,7 @@ const props = withDefaults(defineProps<{
 
 <template>
   <a-button v-bind="props as any">
+    <template #icon><slot name="icon" /></template>
     <slot />
   </a-button>
 </template>

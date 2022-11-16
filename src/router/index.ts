@@ -10,7 +10,8 @@ const router = createRouter({
       name: 'login',
       component: () => import('@/views/user/login.vue'),
       meta: {
-          hideInMenu: true
+        title: 'Login',
+        hideInMenu: true
       }
     },
     ...config

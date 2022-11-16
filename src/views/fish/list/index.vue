@@ -56,7 +56,7 @@ const columns = [
   {
     title: "From",
     dataIndex: "address",
-    ellipsis: true,
+    width: 120,
   },
   {
     title: "Create time",

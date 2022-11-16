@@ -8,7 +8,7 @@ import PopupConfirm from "@/components/ui/feedback/PopupConfirm.vue";
 import Form from "@/components/ui/form/Form.vue";
 
 import Detail from "@/components/logic/detail/DetailDrawer.vue";
-import { sortType } from "@/define/list.d";
+import type { sortType } from "@/define/list.d";
 import useList from "@/hooks/list";
 
 const props = defineProps<{
@@ -74,7 +74,7 @@ const handlePageChange = (current: number) => {
   fetchList(current);
 };
 
-const handleSort = (key, value) => {
+const handleSort = (key: string, value: sortType) => {
   sortList({ key, value });
 };
 
@@ -152,8 +152,12 @@ const handleSave = async () => {
       </SearchPanel>
       <Divider style="margin-top: 0" />
       <div class="operation-wrap">
-        <Button @click="handleCreate" class="operation-btn">Create</Button>
-        <Button status="success" class="operation-btn">Export</Button>
+        <Button @click="handleCreate" class="operation-btn">
+          <template #icon><icon-plus /></template>Create
+        </Button>
+        <Button class="operation-btn" type="outline">
+          <template #icon><icon-download /></template>Download
+        </Button>
       </div>
       <Table
         class="table"

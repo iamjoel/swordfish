@@ -24,21 +24,21 @@ const route = [
             },
             children: [
                 {
-                    name: 'fish-list',
-                    path: 'list',
-                    meta: {
-                        title: 'List',
-                    },
-                    component: () => import('@/views/fish/list/index.vue')
-                },
-                {
                     name: 'fish-summary',
                     path: 'summary',
                     meta: {
                         title: 'Summary',
                     },
-                    component: () => import('@/views/fish/list/index.vue')
-                }
+                    component: () => import('@/views/fish/summary/index.vue')
+                },
+                {
+                  name: 'fish-list',
+                  path: 'list',
+                  meta: {
+                      title: 'List',
+                  },
+                  component: () => import('@/views/fish/list/index.vue')
+              },
             ]
         },
       ]
