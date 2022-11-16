@@ -12,6 +12,7 @@ export default function setupUserLoginInfoGuard(router: Router) {
       window.document.title = title as string
     } else {
       if (to.name === 'login') {
+        window.document.title = 'Login'
         next();
         return;
       }
