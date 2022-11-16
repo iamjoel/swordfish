@@ -9,24 +9,16 @@ import { setToken, clearToken } from '@/utils/auth';
 import type { UserState } from './types';
 
 const useUserStore = defineStore('user', {
-  state: (): UserState => ({
-    name: undefined,
-    avatar: undefined,
-    job: undefined,
-    organization: undefined,
-    location: undefined,
-    email: undefined,
-    introduction: undefined,
-    personalWebsite: undefined,
-    jobName: undefined,
-    organizationName: undefined,
-    locationName: undefined,
-    phone: undefined,
-    registrationDate: undefined,
-    accountId: undefined,
-    certification: undefined,
-    role: '',
-  }),
+  state: (): UserState => {
+      const user = window.localStorage.getItem('user')
+      if(!user) {
+        return {
+          name: '',
+          role: '',
+        }
+      }
+      return JSON.parse(user)
+  },
 
   getters: {
     userInfo(state: UserState): UserState {
@@ -35,15 +27,10 @@ const useUserStore = defineStore('user', {
   },
 
   actions: {
-    switchRoles() {
-      return new Promise((resolve) => {
-        this.role = this.role === 'user' ? 'admin' : 'user';
-        resolve(this.role);
-      });
-    },
     // Set user's information
-    setInfo(partial: Partial<UserState>) {
-      this.$patch(partial);
+    setInfo(user: Partial<UserState>) {
+      window.localStorage.setItem('user', JSON.stringify(user));
+      this.$patch(user);
     },
 
     // Reset user's information
@@ -51,27 +38,26 @@ const useUserStore = defineStore('user', {
       this.$reset();
     },
 
-    // Get user's information
-    async info() {
-      const res = await getUserInfo();
-
-      this.setInfo(res.data);
-    },
-
     // Login
     async login(loginForm: LoginData) {
       try {
-        const { data } = await userLogin(loginForm);
-        if(data.error) {
-            throw data.error
+        const { data: res } = await userLogin(loginForm);
+        if(res.error) {
+            throw res.error
         }
+        const { data } = res
         setToken(data.token);
+        this.setInfo(data as UserState)
+        window.localStorage.setItem('user', JSON.stringify(data));
       } catch (err) {
         clearToken();
         throw err;
       }
     },
-    
+
+    logout() {
+        clearToken();
+    }
   },
 });
 

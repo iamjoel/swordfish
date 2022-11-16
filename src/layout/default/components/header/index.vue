@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
+import type { LocationQueryRaw } from "vue-router";
+import { useUserStore } from "@/stores";
 
 const router = useRouter();
+const route = useRoute();
+const userStore = useUserStore();
 
 const handleSelect = (action: any) => {
   switch (action as string) {
     case "logout":
-      router.push({ name: "login" });
+      userStore.logout();
+      router.push({
+        name: "login",
+        query: {
+          redirect: route.name,
+        } as LocationQueryRaw,
+      });
       break;
-
     default:
       break;
   }
@@ -24,6 +33,7 @@ const handleSelect = (action: any) => {
   >
     <template #extra>
       <div class="right-part">
+        <div class="welcome">Welcome: {{ userStore.name }}~</div>
         <icon-notification class="notice-icon" />
         <a-dropdown @select="handleSelect">
           <a-avatar class="avatar">

@@ -3,24 +3,35 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "@arco-design/web-vue";
 import { useUserStore } from "@/stores";
+import useBoolean from "@/hooks/boolean";
 import type { LoginData } from "@/api/user";
 
 const router = useRouter();
 const userStore = useUserStore();
+const [isLoading, { setTrue: startLoading, setFalse: stopLoading }] =
+  useBoolean();
 
 const form = reactive({
   username: "admin",
-  password: "123",
+  password: "1",
   isRead: false,
 });
 
 const handleSubmit = async () => {
   try {
-    const res = await userStore.login(form as LoginData);
-    console.log(res);
-    router.push({ name: "home" });
+    startLoading();
+    await userStore.login(form as LoginData);
+    const { redirect, ...othersQuery } = router.currentRoute.value.query;
+    router.push({
+      name: (redirect as string) || "home",
+      query: {
+        ...othersQuery,
+      },
+    });
   } catch (e) {
     Message.error(e + "");
+  } finally {
+    stopLoading();
   }
 };
 </script>
@@ -48,7 +59,14 @@ const handleSubmit = async () => {
               />
             </a-form-item>
             <a-form-item style="margin-bottom: 0">
-              <a-button html-type="submit" type="primary">Login</a-button>
+              <a-button
+                html-type="submit"
+                type="primary"
+                :loading="isLoading"
+                size="large"
+              >
+                Login
+              </a-button>
             </a-form-item>
           </a-form>
         </template>

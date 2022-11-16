@@ -1,6 +1,23 @@
 import Mock from 'mockjs';
 import {successResponseWrap, failResponseWrap} from '@/mock/response'
 
+const userList = [
+    {
+        id: 1,
+        name: 'Joel',
+        username: 'admin',
+        password: '1',
+        role: 'admin'
+    },
+    {
+        id: 2,
+        name: 'Rick',
+        username: 'staff',
+        password: '1',
+        role: 'user'
+    }
+]
+
 // login
 Mock.mock(new RegExp('/api/user/login'), (params: MockParams) => {
     const { username, password } = JSON.parse(params.body);
@@ -10,18 +27,15 @@ Mock.mock(new RegExp('/api/user/login'), (params: MockParams) => {
     if (!password) {
     return failResponseWrap(null, '密码不能为空', 50000);
     }
-    if (username === 'admin' && password === 'admin') {
-    window.localStorage.setItem('userRole', 'admin');
-    return successResponseWrap({
-        token: '12345',
-    });
+    const user = userList.find(item => item.username === username && item.password === password)
+    if (user) {
+        return successResponseWrap({
+            token: Math.round(Math.random() * 100000) + '',
+            ...user,
+            password: '****',
+        });
     }
-    if (username === 'user' && password === 'user') {
-    window.localStorage.setItem('userRole', 'user');
-    return successResponseWrap({
-        token: '54321',
-    });
-    }
+    // window.localStorage.setItem('userRole', 'user');
     return failResponseWrap(null, '账号或者密码错误', 50000);
 });
 
