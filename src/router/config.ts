@@ -13,7 +13,7 @@ const route = [
             component: Dashboard,
             meta: {
                 title: 'Dashboard',
-                icon: 'dashboard'
+                icon: 'dashboard',
             }
         },
         {

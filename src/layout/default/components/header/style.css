@@ -12,6 +12,15 @@
     margin-right: 20px;
 }
 
+.trigger-btn{
+  position: absolute;
+  bottom: 14px;
+}
+
+.trigger-btn {
+  margin-left: 14px;
+}
+
 .notice-icon {
     margin-right: 20px;
     font-size: 20px;
