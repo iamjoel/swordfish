@@ -23,6 +23,15 @@ const router = createRouter({
         hideInMenu: true,
       },
     },
+    {
+      path: '/forget-password',
+      name: 'forget-password',
+      component: () => import('@/views/user/forget-password.vue'),
+      meta: {
+        title: 'Forget password',
+        hideInMenu: true,
+      },
+    },
     ...config,
   ],
 })

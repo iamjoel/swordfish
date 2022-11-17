@@ -3,7 +3,7 @@ import NProgress from 'nprogress'; // progress bar
 import { APP_NAME } from '@/config'
 import { isLogin } from '@/utils/auth';
 
-const whiteList = ['register']
+const whiteList = ['register', 'forget-password']
 
 export default function setupUserLoginInfoGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {

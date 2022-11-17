@@ -12,7 +12,8 @@ An admin template build with [Vue3](https://vuejs.org/), [Vite](https://vitejs.d
   * [ ] Dashboard.
   * [x] Login page.
   * [x] Register page.
-  * [ ] Forget password page.
+  * [x] Forget password page.
+  * [ ] 404 page.
 * [x] Lint and prettier code.
   
 Inspired by [Arco Design Pro](https://github.com/arco-design/arco-design-pro-vue)

@@ -35,9 +35,9 @@ const handleSubmit = async () => {
   }
 };
 
-const handleRegister = () => {
+const toPage = (name: string) => {
   router.push({
-    name: "register",
+    name,
     query: router.currentRoute.value.query,
   });
 };
@@ -58,12 +58,21 @@ const handleRegister = () => {
                 placeholder="Please enter your username"
               />
             </a-form-item>
-            <a-form-item field="password" label="Password">
+            <a-form-item
+              field="password"
+              label="Password"
+              style="margin-bottom: 5px"
+            >
               <a-input
                 v-model="form.password"
                 type="password"
                 placeholder="Please enter your password"
               />
+            </a-form-item>
+            <a-form-item style="margin-bottom: 5px">
+              <a-link class="forget-link" @click="toPage('forget-password')"
+                >Forget password</a-link
+              >
             </a-form-item>
             <a-form-item style="margin-bottom: 0">
               <div style="width: 100%">
@@ -82,7 +91,7 @@ const handleRegister = () => {
                   type="text"
                   size="large"
                   long
-                  @click="handleRegister"
+                  @click="toPage('register')"
                 >
                   Register
                 </a-button>
@@ -109,8 +118,14 @@ const handleRegister = () => {
 }
 
 .form {
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 10px;
+}
+
+.forget-link {
+  display: block;
+  text-align: right;
+  width: 100%;
 }
 
 .login-btn,

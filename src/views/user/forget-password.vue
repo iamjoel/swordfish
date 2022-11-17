@@ -10,6 +10,8 @@ const [isLoading, { setTrue: startLoading, setFalse: stopLoading }] =
 
 const form = reactive({
   username: "",
+  telephone: "",
+  code: "",
   password: "",
 });
 
@@ -41,7 +43,7 @@ const handleSubmit = async () => {
         <template #title>
           <div class="title">
             <icon-left class="back-icon" @click="router.go(-1)" />
-            Register
+            Forget password
           </div>
         </template>
         <template #description>
@@ -63,26 +65,49 @@ const handleSubmit = async () => {
               />
             </a-form-item>
             <a-form-item
+              field="telephone"
+              label="Telephone"
+              :rules="{ required: true, message: 'Telephone required' }"
+            >
+              <a-input
+                v-model="form.telephone"
+                type="text"
+                placeholder="Please enter your telephone"
+              />
+            </a-form-item>
+            <a-form-item
+              field="code"
+              label="Verification code"
+              :rules="{ required: true, message: 'Verification code required' }"
+            >
+              <a-input
+                v-model="form.code"
+                placeholder="Please enter your Verification code"
+              />
+              <a-link style="margin-left: 5px">Send</a-link>
+            </a-form-item>
+            <a-form-item
               field="password"
-              label="Password"
+              label="New Password"
               :rules="{ required: true, message: 'Password required' }"
             >
               <a-input
                 v-model="form.password"
                 type="password"
-                placeholder="Please enter your password"
+                placeholder="Please enter new password"
               />
             </a-form-item>
             <a-form-item style="margin-bottom: 0">
               <div style="width: 100%">
                 <a-button
+                  class="login-btn"
                   html-type="submit"
                   type="primary"
                   :loading="isLoading"
                   size="large"
                   long
                 >
-                  Register
+                  Submit
                 </a-button>
               </div>
             </a-form-item>
