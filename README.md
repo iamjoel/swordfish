@@ -18,7 +18,7 @@ An admin template build with [Vue3](https://vuejs.org/), [Vite](https://vitejs.d
   
 Inspired by [Arco Design Pro](https://github.com/arco-design/arco-design-pro-vue)
 
-## Project fold structure
+## Project folder structure
 * docs. Docs.
 * src
   * api. Http API.
