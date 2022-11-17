@@ -2,7 +2,7 @@
 import { useRouter, useRoute } from "vue-router";
 import type { LocationQueryRaw } from "vue-router";
 import { APP_NAME, APP_DESCRIPTION } from "@/config";
-import { useUserStore } from "@/stores";
+import { useUserStore } from '@/stores';
 // import i18n, { LOCALE_OPTIONS } from "@/locale";
 // import useLocale from "@/hooks/locale";
 
