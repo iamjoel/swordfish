@@ -1,21 +1,21 @@
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-export default function useBoolean(initValue = false) : any{
-  const state = ref(initValue);
+export default function useBoolean(initValue = false): any {
+  const state = ref(initValue)
   const setState = (value: boolean) => {
-    state.value = value;
-  };
+    state.value = value
+  }
 
   const setTrue = () => {
-    setState(true);
-  };
+    setState(true)
+  }
 
   const setFalse = () => {
-    setState(false);
-  };
+    setState(false)
+  }
 
   const toggle = () => {
-    state.value = !state.value;
-  };
-  return [state, {toggle, setTrue, setFalse, setState}];
+    state.value = !state.value
+  }
+  return [state, { toggle, setTrue, setFalse, setState }]
 }

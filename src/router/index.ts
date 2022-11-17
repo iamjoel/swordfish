@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import config from './config'
-import createRouteGuard from './guard';
+import createRouteGuard from './guard'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,13 +11,13 @@ const router = createRouter({
       component: () => import('@/views/user/login.vue'),
       meta: {
         title: 'Login',
-        hideInMenu: true
-      }
+        hideInMenu: true,
+      },
     },
-    ...config
-  ]
+    ...config,
+  ],
 })
 
-createRouteGuard(router);
+createRouteGuard(router)
 
 export default router

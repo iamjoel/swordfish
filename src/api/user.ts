@@ -1,24 +1,23 @@
-import axios from 'axios';
-import type { UserState } from '@/stores/modules/user/types';
+import axios from 'axios'
+import type { UserState } from '@/stores/modules/user/types'
 
 export interface LoginData {
-  username: string;
-  password: string;
+  username: string
+  password: string
 }
 
 export interface LoginRes {
-  error?: string;
+  error?: string
   data: {
-    name: string,
-    role: string;
-    token: string;
+    name: string
+    role: string
+    token: string
   }
 }
 export function login(data: LoginData) {
-  return axios.post<LoginRes>('/api/user/login', data);
+  return axios.post<LoginRes>('/api/user/login', data)
 }
 
 export function getUserInfo() {
-  return axios.post<UserState>('/api/user/info');
+  return axios.post<UserState>('/api/user/info')
 }
-
