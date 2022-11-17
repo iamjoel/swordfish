@@ -13,7 +13,7 @@ An admin template build with [Vue3](https://vuejs.org/), [Vite](https://vitejs.d
   * [x] Login page.
   * [ ] Register page.
   * [ ] Forget password page.
-* Lint and prettier code.
+* [x] Lint and prettier code.
   
 Inspired by [Arco Design Pro](https://github.com/arco-design/arco-design-pro-vue)
 
