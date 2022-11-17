@@ -11,7 +11,7 @@ An admin template build with [Vue3](https://vuejs.org/), [Vite](https://vitejs.d
   * [x] List page. Include create, edit and show detail.
   * [ ] Dashboard.
   * [x] Login page.
-  * [ ] Register page.
+  * [x] Register page.
   * [ ] Forget password page.
 * [x] Lint and prettier code.
   

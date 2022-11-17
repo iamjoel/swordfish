@@ -14,6 +14,15 @@ const router = createRouter({
         hideInMenu: true,
       },
     },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/user/register.vue'),
+      meta: {
+        title: 'Register',
+        hideInMenu: true,
+      },
+    },
     ...config,
   ],
 })

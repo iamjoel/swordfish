@@ -3,10 +3,12 @@ import NProgress from 'nprogress'; // progress bar
 import { APP_NAME } from '@/config'
 import { isLogin } from '@/utils/auth';
 
+const whiteList = ['register']
+
 export default function setupUserLoginInfoGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
     NProgress.start();
-    if (isLogin()) {
+    if (isLogin() || whiteList.includes(to.name as string)) {
       next();
       const title = to.meta?.title || APP_NAME
       window.document.title = title as string

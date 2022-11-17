@@ -1,32 +1,31 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "@arco-design/web-vue";
-import { useUserStore } from "@/stores";
 import useBoolean from "@/hooks/boolean";
-import type { LoginData } from "@/api/user";
 
 const router = useRouter();
-const userStore = useUserStore();
 const [isLoading, { setTrue: startLoading, setFalse: stopLoading }] =
   useBoolean();
 
 const form = reactive({
-  username: "admin",
-  password: "1",
-  isRead: false,
+  username: "",
+  password: "",
 });
 
+const formRef = ref(null);
+
 const handleSubmit = async () => {
+  const validRes = await formRef.value?.validate();
+  if (validRes) {
+    // 没过验证
+    return;
+  }
   try {
     startLoading();
-    await userStore.login(form as LoginData);
-    const { redirect, ...othersQuery } = router.currentRoute.value.query;
     router.push({
-      name: (redirect as string) || "home",
-      query: {
-        ...othersQuery,
-      },
+      name: "login",
+      query: router.currentRoute.value.query,
     });
   } catch (e) {
     Message.error(e + "");
@@ -34,31 +33,38 @@ const handleSubmit = async () => {
     stopLoading();
   }
 };
-
-const handleRegister = () => {
-  router.push({
-    name: "register",
-    query: router.currentRoute.value.query,
-  });
-};
 </script>
 
 <template>
   <div class="container">
-    <a-card hoverable :style="{ width: '400px' }">
+    <a-card hoverable :style="{ width: '500px' }">
       <a-card-meta>
         <template #title>
-          <div class="title">Login</div>
+          <div class="title">Register</div>
         </template>
         <template #description>
-          <a-form :model="form" @submit="handleSubmit" class="form">
-            <a-form-item field="username" label="Username">
+          <a-form
+            :model="form"
+            auto-label-width
+            @submit="handleSubmit"
+            class="form"
+            ref="formRef"
+          >
+            <a-form-item
+              field="username"
+              label="Username"
+              :rules="{ required: true, message: 'Username required' }"
+            >
               <a-input
                 v-model="form.username"
                 placeholder="Please enter your username"
               />
             </a-form-item>
-            <a-form-item field="password" label="Password">
+            <a-form-item
+              field="password"
+              label="Password"
+              :rules="{ required: true, message: 'Password required' }"
+            >
               <a-input
                 v-model="form.password"
                 type="password"
@@ -74,15 +80,6 @@ const handleRegister = () => {
                   :loading="isLoading"
                   size="large"
                   long
-                >
-                  Login
-                </a-button>
-                <a-button
-                  class="register-btn"
-                  type="text"
-                  size="large"
-                  long
-                  @click="handleRegister"
                 >
                   Register
                 </a-button>
